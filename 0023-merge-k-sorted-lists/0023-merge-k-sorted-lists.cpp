@@ -8,16 +8,6 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-ListNode* mid_point (ListNode* head){
-    if(head==NULL || head->next==NULL)return head;
-    ListNode* slow=head;
-    ListNode* fast=head->next;
-    while(fast!=NULL && fast->next!=NULL){
-        slow=slow->next;
-        fast=fast->next->next;
-    }
-    return slow;
-}
 ListNode* Merge(ListNode* a,ListNode* b){
     if(a==NULL){
         return b;
@@ -34,20 +24,6 @@ ListNode* Merge(ListNode* a,ListNode* b){
         c=b;
         c->next=Merge(a,b->next);
     }
-    return c;
-}
-ListNode* Merge_sort(ListNode* head){
-    if(head==NULL || head->next==NULL){
-        return head;
-    }
-    ListNode* mid=mid_point(head);
-    ListNode* a=head;
-    ListNode* b=mid->next;
-    mid->next=NULL;
-    a=Merge_sort(a);
-    b=Merge_sort(b);
-    ListNode* c;
-    c=Merge(a,b);
     return c;
 }
 class Solution {
