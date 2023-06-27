@@ -30,7 +30,7 @@ public:
              s.pop();
         }
         else{
-           long long int prvious_min=mini;
+           
             mini=2*mini-s.top();
             s.pop();
         }
