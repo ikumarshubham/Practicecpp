@@ -32,8 +32,44 @@ public:
         
         return ls&rs;
     }
+    
+    bool same_tree2(TreeNode* root1,TreeNode* root2){
+        if(root1==NULL || root2==NULL){
+            return root1==root2;
+        }
+        
+        queue<TreeNode*> q;
+        q.push(root1);q.push(root2);
+        while(!q.empty()){
+            TreeNode* r1=q.front();q.pop();
+            TreeNode* r2=q.front();q.pop();
+            if(r1==NULL && r2==NULL){
+                continue;
+            }
+            if(r1==NULL || r2==NULL){
+                return false;
+            }
+            if(r1->val!=r2->val){
+                return false;
+            }
+            
+                q.push(r1->left);
+        
+           
+                q.push(r2->left);
+            
+            
+                q.push(r1->right);
+            
+           
+                q.push(r2->right);
+          
+            
+        }
+        return true;
+    }
     bool isSameTree(TreeNode* p, TreeNode* q) {
         
-        return same_tree(p,q);
+        return same_tree2(p,q);
     }
 };
