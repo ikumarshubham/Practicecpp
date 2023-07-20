@@ -10,6 +10,29 @@
 class Solution {
 public:
     
+    TreeNode* LCA(TreeNode* root,TreeNode* a,TreeNode* b ){
+        if(root==NULL){
+            return NULL;
+        }
+        
+        if(root==a || root==b){
+            return root;
+        }
+        
+        TreeNode* leftans=LCA(root->left,a,b);
+        TreeNode* rightans=LCA(root->right,a,b);
+        
+        if(leftans!=NULL && rightans!=NULL){
+          return root;
+        }
+        
+        if(leftans!=NULL){
+            return leftans;
+        }
+        
+        return rightans;
+    }
+    
     bool  path(TreeNode* root,TreeNode* target,vector<TreeNode*>& vec1){
     if(root==NULL){
         return false;
@@ -32,26 +55,8 @@ public:
 
     
 }
+    
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        vector<TreeNode*>vec1;
-        vector<TreeNode*>vec2;
-        
-        bool ans1=path(root,p,vec1);
-        bool ans2=path(root,q,vec2);
-        
-        TreeNode* lca=NULL;
-        
-        if(ans1& ans2){
-            for(int i=0;i<min(vec1.size(),vec2.size());i++){
-        if(vec1[i]==vec2[i]){
-            lca=vec1[i];
-        }
-        else{
-            break;
-        }
-    }
-        }
-        
-        return lca;
+        return LCA(root,p,q);
     }
 };
