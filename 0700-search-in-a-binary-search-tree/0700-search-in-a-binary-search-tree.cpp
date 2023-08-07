@@ -22,9 +22,17 @@ public:
         if(val<root->val){
             return search(root->left,val);
         }
-        
+        else
         return search(root->right,val);
     }
+    
+    //search iteratively
+    TreeNode* search1(TreeNode* root, int val) {
+    while (root != nullptr && root->val != val) {
+      root = (root->val > val) ? root->left : root->right;
+    }
+    return root;
+}
     TreeNode* searchBST(TreeNode* root, int val) {
         
         return search(root,val);
