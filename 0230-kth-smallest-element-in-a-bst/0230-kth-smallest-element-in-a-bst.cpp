@@ -19,13 +19,28 @@ public:
         vec1.push_back(root->val);
         inorder(root->right,vec1);
     }
-    int kthSmallest(TreeNode* root, int k) {
-        vector<int>vec1;
-        inorder(root,vec1);
-        int ans=0;
-        for(int i=0;i<k;i++){
-            ans=vec1[i];
+    void in(TreeNode* root,int k,int& i,int& ans){
+        if(root==NULL){
+            return;
         }
+        in(root->left,k,i,ans);
+        if(i==k){
+            ans=root->val;
+        }
+        i++;
+        in(root->right,k,i,ans);
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        // vector<int>vec1;
+        // inorder(root,vec1);
+        // int ans=0;
+        // for(int i=0;i<k;i++){
+        //     ans=vec1[i];
+        // }
+        // return ans;
+        int ans=0;
+        int i=1;
+        in(root,k,i,ans);
         return ans;
     }
 };
